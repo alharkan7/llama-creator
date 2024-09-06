@@ -481,13 +481,13 @@ export default function PDFProcessor() {
           <p className="text-sm text-blue-500">Selected file: {file.name}</p>
         )}
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
-        <Button
-          onClick={handleProcess}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-          disabled={(!pdfLink && !file) || (pdfLink && file)}
-        >
-          Transform PDF
-        </Button>
+<Button
+  onClick={handleProcess}
+  className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+  disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
+>
+  Transform PDF
+</Button>
       </Card>
     </div>
   );
