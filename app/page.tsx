@@ -275,15 +275,15 @@ export default function PDFProcessor() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
-                  <FacebookShareButton
-                    url={window.location.href}
-                    quote={cards[currentCard]}
-                  >
-                    <div className="flex items-center">
-                      <Facebook className="w-4 h-4 mr-2" />
-                      Facebook
-                    </div>
-                  </FacebookShareButton>
+<FacebookShareButton
+  url={window.location.href}
+  hashtag={`#${cards[currentCard].split(' ').slice(0, 3).join('')}`}
+>
+  <div className="flex items-center">
+    <Facebook className="w-4 h-4 mr-2" />
+    Facebook
+  </div>
+</FacebookShareButton>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <div className="flex items-center">
