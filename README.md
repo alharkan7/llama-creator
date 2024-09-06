@@ -1,3 +1,9 @@
+## Overview
+
+This is an interactive mockup to demonstrate how Llama LLM can transform PDF science papers into chunks of cards for social media content.
+
+The backend setup for this app, a proof of concept, can be found here on [Colab Notebook](https://colab.research.google.com/drive/17yHdNdqOTnBqNFypgBGaDLMNN4KVWdSh?usp=sharing).
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
