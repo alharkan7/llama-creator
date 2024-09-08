@@ -118,10 +118,17 @@ export default function PDFProcessor() {
           body: formData,
         }
       );
+
+      if (!response.ok) {
+        const errorData = await response.json(); // Try to get the error response
+        setErrorMessage(Object.values(errorData).join(", "));
+        return; // Exit early if there's an error
+      }
+
       const data = await response.json();
       setCards(Object.values(data)); // Assuming the response is an object with string values
     } catch (error) {
-      setErrorMessage("Error processing the PDF");
+      setErrorMessage("Error processing the PDF"); // Fallback error message for network issues
     } finally {
       setIsLoading(false);
     }
