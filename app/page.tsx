@@ -102,8 +102,8 @@ export default function PDFProcessor() {
     }
     setErrorMessage("");
     setIsLoading(true);
-    const formData = new FormData();
 
+    const formData = new FormData();
     if (pdfLink) {
       formData.append("pdf_url", pdfLink);
     } else if (file) {
@@ -115,16 +115,11 @@ export default function PDFProcessor() {
         "https://llama-creator-api.onrender.com/upload-pdf/",
         {
           method: "POST",
-
           body: formData,
         }
       );
-
       const data = await response.json();
-
-      // Handle the response data as needed
-
-      console.log(data);
+      setCards(Object.values(data)); // Assuming the response is an object with string values
     } catch (error) {
       setErrorMessage("Error processing the PDF");
     } finally {
