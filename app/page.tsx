@@ -87,7 +87,7 @@ export default function PDFProcessor() {
     }
   };
 
-  const handleProcess = () => {
+  const handleProcess = async () => {
     if (!pdfLink && !file) {
       setErrorMessage("Please provide a PDF link or file");
       return;
@@ -102,19 +102,34 @@ export default function PDFProcessor() {
     }
     setErrorMessage("");
     setIsLoading(true);
-    // Simulate processing
-    setTimeout(() => {
-      setCards([
-        "Did you know that Twitter Analytics can help us understand how social media personality dimensions change in response to major events? Let's dive into a study that used Twitter to analyze the impact of the Union Budget 2016 in India!",
-        "How do social media personality dimensions change in response to major events? Can we use Twitter data to understand this phenomenon?",
-        "The research was conducted by Akshat Lakhiwal and Arpan Kumar Kar from the Department of Management Studies, IIT Delhi, India.",
-        "The study analyzed 43,924 Twitter tweets from 22,896 users before and after the Union Budget 2016 in India. The tweets were categorized into 11 distinct social media groups based on their content and sentiment.",
-        "The study found that different social media groups responded differently to the event. Some groups showed a significant change in personality dimensions, while others did not. The most sensitive groups were found to be individual users, media networks, and financial markets.",
-        "The study highlights the importance of understanding how social media personality dimensions change in response to major events. This could have implications for public policy, business, and marketing strategies.",
-        "What do you think is the most effective way to use social media analytics to understand consumer behavior? Share your thoughts in the comments below!",
-      ]);
+    const formData = new FormData();
+
+    if (pdfLink) {
+      formData.append("pdf_url", pdfLink);
+    } else if (file) {
+      formData.append("pdf_file", file);
+    }
+
+    try {
+      const response = await fetch(
+        "https://llama-creator-api.onrender.com/upload-pdf/",
+        {
+          method: "POST",
+
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+
+      // Handle the response data as needed
+
+      console.log(data);
+    } catch (error) {
+      setErrorMessage("Error processing the PDF");
+    } finally {
       setIsLoading(false);
-    }, 3000);
+    }
   };
 
   const handlers = useSwipeable({
@@ -275,15 +290,18 @@ export default function PDFProcessor() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
-<FacebookShareButton
-  url={window.location.href}
-  hashtag={`#${cards[currentCard].split(' ').slice(0, 3).join('')}`}
->
-  <div className="flex items-center">
-    <Facebook className="w-4 h-4 mr-2" />
-    Facebook
-  </div>
-</FacebookShareButton>
+                  <FacebookShareButton
+                    url={window.location.href}
+                    hashtag={`#${cards[currentCard]
+                      .split(" ")
+                      .slice(0, 3)
+                      .join("")}`}
+                  >
+                    <div className="flex items-center">
+                      <Facebook className="w-4 h-4 mr-2" />
+                      Facebook
+                    </div>
+                  </FacebookShareButton>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <div className="flex items-center">
@@ -481,13 +499,13 @@ export default function PDFProcessor() {
           <p className="text-sm text-blue-500">Selected file: {file.name}</p>
         )}
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
-<Button
-  onClick={handleProcess}
-  className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-  disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
->
-  Transform PDF
-</Button>
+        <Button
+          onClick={handleProcess}
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+          disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
+        >
+          Transform PDF
+        </Button>
       </Card>
     </div>
   );
