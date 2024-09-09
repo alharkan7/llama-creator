@@ -469,9 +469,6 @@ export default function PDFProcessor() {
           <h6 className="text-s text-center text-blue-600">
             Turn Science Paper into Media Content
           </h6>
-          <p className="text-xs text-center text-blue-600">
-            This web app is hosted on Render free tier. Expect slow performance. If error, refresh the page.
-          </p>
         </div>
         <Input
           type="text"
@@ -520,6 +517,10 @@ export default function PDFProcessor() {
           <p className="text-sm text-blue-500">Selected file: {file.name}</p>
         )}
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
+        <p className="text-xs text-center text-red-400">
+            This web app is hosted on Render free tier.<br />
+            Expect slow performance. If error, refresh the page.
+          </p>
         <Button
           onClick={handleProcess}
           className="w-full bg-blue-500 hover:bg-blue-600 text-white"
