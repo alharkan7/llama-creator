@@ -244,13 +244,6 @@ export default function PDFProcessor() {
                 : {}
             }
           >
-            {/* Display the key of the current card */}
-
-            <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
-
-            #{Object.keys(data)[currentCard]} {/* Assuming 'data' is your JSON response */}
-
-            </div>
 
             <TransitionGroup>
               <CSSTransition
@@ -264,6 +257,10 @@ export default function PDFProcessor() {
                 }}
               >
                 <div className="absolute inset-0 flex items-center justify-center p-6">
+                  {/* Display the key of the current card */}
+                  <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
+                    #{Object.keys(data)[currentCard]} {/* Assuming 'data' is your JSON response */}
+                  </div>
                   {editMode ? (
                     <Textarea
                       value={cards[currentCard]}
