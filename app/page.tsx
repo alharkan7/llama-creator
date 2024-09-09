@@ -379,7 +379,7 @@ export default function PDFProcessor() {
                     key={index}
                     onClick={() => handlePictureChange(picture)}
                   >
-                    <Image 
+                    <img 
                       src={picture}
                       alt={`Background ${index + 1}`}
                       className="w-full h-20 object-cover"
@@ -458,7 +458,7 @@ export default function PDFProcessor() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-white p-4">
       <Card className="w-full max-w-md p-6 space-y-4 shadow-lg border border-blue-200">
         <div className="flex flex-col items-center mb-4">
-          <Image 
+          <img 
             src="/images/llama-logo.png?text=Logo"
             alt="Llama Science Creator Logo"
             className="w-24 h-24 md:w-32 md:h-32 object-contain mb-2"
