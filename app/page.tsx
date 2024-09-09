@@ -261,17 +261,19 @@ export default function PDFProcessor() {
                   <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
                     #{Object.keys(data)[currentCard]} {/* Assuming 'data' is your JSON response */}
                   </div>
-                  {editMode ? (
-                    <Textarea
-                      value={cards[currentCard]}
-                      onChange={(e) => handleEdit(currentCard, e.target.value)}
-                      className="text-xl sm:text-3xl font-bold w-full h-full resize-none bg-transparent leading-relaxed"
-                    />
-                  ) : (
-                    <div className="text-xl sm:text-3xl font-bold overflow-auto leading-relaxed">
-                      {cards[currentCard]}
-                    </div>
-                  )}
+                  <div className="text-xl sm:text-3xl font-bold overflow-auto leading-relaxed w-full h-[60%] mt-10"> {/* Adjust height as needed */}
+                    {editMode ? (
+                      <Textarea
+                        value={cards[currentCard]}
+                        onChange={(e) => handleEdit(currentCard, e.target.value)}
+                        className="text-xl sm:text-3xl font-bold w-full h-full resize-none bg-transparent leading-relaxed"
+                      />
+                    ) : (
+                      <div className="overflow-auto h-full">
+                        {cards[currentCard]}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </CSSTransition>
             </TransitionGroup>
