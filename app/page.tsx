@@ -470,7 +470,7 @@ export default function PDFProcessor() {
             Turn Science Paper into Media Content
           </h6>
           <p className="text-xs text-center text-blue-600">
-            This web app is hosted on Render's free tier. Expect slow performance. If error, refresh the page.
+            This web app is hosted on Render free tier. Expect slow performance. If error, refresh the page.
           </p>
         </div>
         <Input
