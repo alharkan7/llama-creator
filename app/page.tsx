@@ -87,6 +87,9 @@ export default function PDFProcessor() {
     }
   };
 
+  const [data, setData] = useState<{ [key: string]: any }>({}); // Define the type for data
+
+
   const handleProcess = async () => {
     if (!pdfLink && !file) {
       setErrorMessage("Please provide a PDF link or file");
@@ -125,8 +128,9 @@ export default function PDFProcessor() {
         return; // Exit early if there's an error
       }
 
-      const data = await response.json();
-      setCards(Object.values(data)); // Assuming the response is an object with string values
+      const fetchedData = await response.json(); // Fetch data
+      setData(fetchedData); // Store data in state
+      setCards(Object.values(fetchedData)); // Assuming the response is an object with string values
     } catch (error) {
       setErrorMessage("Error processing the PDF"); // Fallback error message for network issues
     } finally {
@@ -169,13 +173,18 @@ export default function PDFProcessor() {
   };
 
   const openSourceDocument = () => {
-    // In a real application, you would open the actual source document here
-    // window.open(pdfLink, "_blank");
-    window.open(
-      "https://inria.hal.science/hal-01702159/file/396007_1_En_47_Chapter.pdf",
-      "_blank"
-    );
-  };
+    // Open the user-submitted PDF link or the uploaded file
+    if (pdfLink) {
+        window.open(pdfLink, "_blank");
+    } else if (file) {
+        // Create a URL for the uploaded file and open it
+        const fileUrl = URL.createObjectURL(file);
+        window.open(fileUrl, "_blank");
+    } else {
+        // Handle case where neither link nor file is provided
+        setErrorMessage("No PDF link or file to open");
+    }
+};
 
   // Reset hasSwipedUp when cards change
   useEffect(() => {
@@ -235,6 +244,14 @@ export default function PDFProcessor() {
                 : {}
             }
           >
+            {/* Display the key of the current card */}
+
+            <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
+
+            #{Object.keys(data)[currentCard]} {/* Assuming 'data' is your JSON response */}
+
+            </div>
+
             <TransitionGroup>
               <CSSTransition
                 key={currentCard}
