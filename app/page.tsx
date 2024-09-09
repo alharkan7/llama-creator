@@ -261,7 +261,7 @@ export default function PDFProcessor() {
                   <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
                     #{Object.keys(data)[currentCard]} {/* Assuming 'data' is your JSON response */}
                   </div>
-                  <div className="text-xl sm:text-3xl font-bold overflow-auto leading-relaxed w-full h-[60%] mt-10"> {/* Adjust height as needed */}
+                  <div className="text-xl sm:text-3xl font-bold overflow-auto leading-relaxed w-full h-[95%] mt-10"> {/* Adjust height as needed */}
                     {editMode ? (
                       <Textarea
                         value={cards[currentCard]}
