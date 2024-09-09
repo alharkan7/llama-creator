@@ -518,8 +518,9 @@ export default function PDFProcessor() {
         )}
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
         <p className="text-xs text-center text-red-400">
-            This web app is hosted on Render free tier.<br />
-            Expect slow performance. If error, refresh the page.
+            This web API is hosted on Render free tier.<br />
+            Expect slow performance. If error, refresh the page.<br />
+            The pdf input is ideally not longer than 12 pages.
           </p>
         <Button
           onClick={handleProcess}
