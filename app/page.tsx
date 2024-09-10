@@ -481,6 +481,10 @@ export default function PDFProcessor() {
           <p className="text-sm text-blue-500">Selected file: {file.name}</p>
         )}
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
+        <p className="text-xs text-center text-red-400">
+          This is an interactive UI mockup to demonstrate the concept.<br />
+          To try the working app, try our <a href="https://llama-creator-git-dev-alharkan7s-projects.vercel.app/" className="text-blue-500 underline">Alpha Prototype</a>.
+        </p>
 <Button
   onClick={handleProcess}
   className="w-full bg-blue-500 hover:bg-blue-600 text-white"
