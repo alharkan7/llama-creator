@@ -464,7 +464,7 @@ export default function PDFProcessor() {
             className="w-24 h-24 md:w-32 md:h-32 object-contain mb-2"
           />
           <h1 className="text-2xl font-bold text-center text-blue-600">
-            Llama Science Creator (Beta)
+            Llama Science Creator (Dev)
           </h1>
           <h6 className="text-s text-center text-blue-600">
             Turn Science Paper into Media Content
