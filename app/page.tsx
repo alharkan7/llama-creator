@@ -527,7 +527,7 @@ export default function PDFProcessor() {
         <Button
           onClick={handleProcess}
           className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-          disabled={Boolean(((!pdfLink || pdfLink === defaultUrl) && !file) || (pdfLink && file))}
+          disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
         >
           Transform PDF
         </Button>
