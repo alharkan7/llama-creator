@@ -172,6 +172,8 @@ export default function PDFProcessor() {
     setCurrentMusic(music);
   };
 
+  const defaultUrl = "https://www.nature.com/articles/s41467-024-45563-x.pdf";
+
   const openSourceDocument = () => {
     // Open the user-submitted PDF link or the uploaded file
     if (pdfLink) {
@@ -473,7 +475,7 @@ export default function PDFProcessor() {
         <Input
           type="text"
           placeholder="Paste a .pdf link here"
-          value={pdfLink || "https://www.nature.com/articles/s41467-024-45563-x.pdf"}
+          value={pdfLink || defaultUrl}
           onChange={handleLinkChange}
           className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
         />
@@ -525,7 +527,7 @@ export default function PDFProcessor() {
         <Button
           onClick={handleProcess}
           className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-          disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
+          disabled={Boolean(((!pdfLink || pdfLink === defaultUrl) && !file) || (pdfLink && file))}
         >
           Transform PDF
         </Button>
