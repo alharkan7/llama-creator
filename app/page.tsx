@@ -473,7 +473,7 @@ export default function PDFProcessor() {
         <Input
           type="text"
           placeholder="Paste a .pdf link here"
-          value={pdfLink}
+          value={pdfLink || "https://www.nature.com/articles/s41467-024-45563-x.pdf"}
           onChange={handleLinkChange}
           className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
         />
