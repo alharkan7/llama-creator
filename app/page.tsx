@@ -472,7 +472,7 @@ export default function PDFProcessor() {
         </div>
         <Input
           type="text"
-          placeholder="Paste PDF link here"
+          placeholder="Paste a .pdf link here"
           value={pdfLink}
           onChange={handleLinkChange}
           className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
