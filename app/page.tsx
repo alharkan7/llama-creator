@@ -105,13 +105,13 @@ export default function PDFProcessor() {
     // Simulate processing
     setTimeout(() => {
       setCards([
-        "Did you know that Twitter Analytics can help us understand how social media personality dimensions change in response to major events? Let's dive into a study that used Twitter to analyze the impact of the Union Budget 2016 in India!",
-        "How do social media personality dimensions change in response to major events? Can we use Twitter data to understand this phenomenon?",
-        "The research was conducted by Akshat Lakhiwal and Arpan Kumar Kar from the Department of Management Studies, IIT Delhi, India.",
-        "The study analyzed 43,924 Twitter tweets from 22,896 users before and after the Union Budget 2016 in India. The tweets were categorized into 11 distinct social media groups based on their content and sentiment.",
-        "The study found that different social media groups responded differently to the event. Some groups showed a significant change in personality dimensions, while others did not. The most sensitive groups were found to be individual users, media networks, and financial markets.",
-        "The study highlights the importance of understanding how social media personality dimensions change in response to major events. This could have implications for public policy, business, and marketing strategies.",
-        "What do you think is the most effective way to use social media analytics to understand consumer behavior? Share your thoughts in the comments below!",
+        "Did you know that scientists can use large language models to extract complex information from scientific papers, including relationships between materials and their properties? Scientists discovered a way to teach AI to read and understand complex scientific texts, unlocking a potential treasure trove of new discoveries! ChatGPT can be a powerful tool for chemistry, helping scientists discover new materials and reactions with unprecedented speed",
+        "How can we automatically extract structured information from scientific text to advance our understanding of materials science? Can AI learn to accurately extract complex scientific information from large amounts of text data? Can artificial intelligence help us accelerate the discovery of new materials and reactions in chemistry",
+        "Researchers at Lawrence Berkeley National Laboratory, the Materials Science and Engineering Department at the University of California, Berkeley, and other institutions have developed a new approach to extracting information from scientific text. Researchers from various institutions, including the University of California, used a novel approach to train AI models on extracting scientific information from texts. A team of researchers from the University of California, Berkeley, and the Lawrence Berkeley National Laboratory",
+        "They used a large language model to simultaneously extract named entities and their relationships from text passages, and fine-tuned the model on a small set of annotated examples. The researchers fine-tuned large language models using a combination of annotated datasets and self-supervised learning techniques, allowing the models to learn to recognize and extract complex scientific information. The study used a combination of machine learning models, including GPT-3 and Llama-2, to extract information from scientific texts and predict new chemical reactions",
+        "The results showed that the model was able to accurately extract structured information from scientific text, including relationships between materials and their properties, and that the performance of the model improved with the size of the training set. The study found that the trained AI models were able to accurately extract complex scientific information from texts with high precision and recall, outperforming previous state-of-the-art models. The study found that the AI models were able to accurately extract information from scientific texts and predict new chemical reactions, with some models achieving accuracy rates of over 90%",
+        "This approach has the potential to revolutionize the way we extract information from scientific text, and could be used to advance our understanding of a wide range of fields, including materials science, chemistry, and biology. This breakthrough has significant implications for various fields of science, as it enables the automation of information extraction from large amounts of text data, accelerating the discovery of new knowledge and insights. The study has significant implications for the field of chemistry, potentially accelerating the discovery of new materials and reactions, and enabling scientists to make breakthroughs that could lead to new technologies and innovations",
+        "What are your thoughts on the potential of large language models to extract complex information from scientific text? Could this approach change the way we do research in the future? What do you think about the potential of AI in scientific discovery? Share your thoughts on how AI can help unlock new scientific breakthroughs! What do you think is the most exciting application of AI in chemistry, and how do you see it changing the field in the future"
       ]);
       setIsLoading(false);
     }, 3000);
@@ -150,6 +150,8 @@ export default function PDFProcessor() {
   const handleMusicChange = (music: string) => {
     setCurrentMusic(music);
   };
+
+  const defaultUrl = "https://www.nature.com/articles/s41467-024-45563-x.pdf";
 
   const openSourceDocument = () => {
     // In a real application, you would open the actual source document here
@@ -437,7 +439,7 @@ export default function PDFProcessor() {
         <Input
           type="text"
           placeholder="Paste a .pdf link here"
-          value={pdfLink}
+          value={pdfLink || defaultUrl}
           onChange={handleLinkChange}
           className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
         />
