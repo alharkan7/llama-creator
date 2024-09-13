@@ -475,7 +475,7 @@ export default function PDFProcessor() {
         <Input
           type="text"
           placeholder="Paste a .pdf link here"
-          value={pdfLink || defaultUrl}
+          value={pdfLink}
           onChange={handleLinkChange}
           className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
         />
