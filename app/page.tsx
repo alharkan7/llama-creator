@@ -465,8 +465,9 @@ export default function PDFProcessor() {
                 ></path>
               </svg>
               <p className="mb-2 text-sm text-blue-500">
-                <span className="font-semibold">Click to upload</span> or drag
-                and drop
+                <span className="font-semibold">Click </span> or drag
+                and drop <br/>
+                to upload .pdf file.
               </p>
               <p className="text-xs text-blue-500"></p>
             </div>
@@ -490,7 +491,7 @@ export default function PDFProcessor() {
 <Button
   onClick={handleProcess}
   className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-  disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
+   // disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
 >
   Transform PDF
 </Button>
