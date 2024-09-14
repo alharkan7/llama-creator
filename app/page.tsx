@@ -88,7 +88,7 @@ export default function PDFProcessor() {
   };
 
   const handleProcess = () => {
-    if (!pdfLink && !file) {
+    if (!file) {
       setErrorMessage("Please provide a PDF link or file");
       return;
     }
