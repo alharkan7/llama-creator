@@ -88,10 +88,10 @@ export default function PDFProcessor() {
   };
 
   const handleProcess = () => {
-    if (!file) {
-      setErrorMessage("Please provide a PDF link or file");
-      return;
-    }
+//    if (!file && !pdfLink) {
+//      setErrorMessage("Please provide a PDF link or file");
+//      return;
+//    }
     if (pdfLink && file) {
       setErrorMessage("Please provide a PDF link or file. Not both.");
       return;
