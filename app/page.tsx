@@ -486,7 +486,7 @@ export default function PDFProcessor() {
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
         <p className="text-xs text-center text-red-400">
           This is a UI mockup to demonstrate the concept.<br />
-          To try the working app, try our <a href="https://llama-creator-git-dev-alharkan7s-projects.vercel.app/" className="text-blue-500 underline">Alpha Prototype</a>.
+          To try the working app, try our <a href="https://llama-creator-git-dev-alharkan7s-projects.vercel.app/" className="text-blue-500 underline">Prototype</a>.
         </p>
 <Button
   onClick={handleProcess}
