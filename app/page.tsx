@@ -235,7 +235,7 @@ export default function PDFProcessor() {
           >
             <TransitionGroup>
               <CSSTransition
-                key={currentCard}
+                key={`${currentCard}-${currentHashtag}`}
                 timeout={300}
                 classNames={{
                   enter: "card-enter",
@@ -411,7 +411,7 @@ export default function PDFProcessor() {
             variant="outline"
             size="icon"
             onClick={() => navigateCard("prev")}
-            disabled={currentCard === 0}
+            disabled={currentCard === 0 || currentHashtag === 0}
             aria-label="Previous card"
             className="border-blue-500 text-blue-500 hover:bg-blue-100"
           >
@@ -421,7 +421,7 @@ export default function PDFProcessor() {
             variant="outline"
             size="icon"
             onClick={() => navigateCard("next")}
-            disabled={currentCard === cards.length - 1}
+            disabled={currentCard === cards.length - 1 || currentHashtag === hashtag.length - 1}
             aria-label="Next card"
             className="border-blue-500 text-blue-500 hover:bg-blue-100"
           >
