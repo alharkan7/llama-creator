@@ -58,7 +58,6 @@ export default function PDFProcessor() {
   const [cards, setCards] = useState<string[]>([]);
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [currentCard, setCurrentCard] = useState(0);
-  const [currentHashtag, setCurrentHashtag] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const [cardStyle, setCardStyle] = useState(
     "bg-gradient-to-r from-blue-100 to-white"
@@ -235,7 +234,7 @@ export default function PDFProcessor() {
           >
             <TransitionGroup>
               <CSSTransition
-                key={`${currentCard}-${currentHashtag}`}
+                key={currentCard}
                 timeout={300}
                 classNames={{
                   enter: "card-enter",
@@ -411,7 +410,7 @@ export default function PDFProcessor() {
             variant="outline"
             size="icon"
             onClick={() => navigateCard("prev")}
-            disabled={currentCard === 0 || currentHashtag === 0}
+            disabled={currentCard === 0}
             aria-label="Previous card"
             className="border-blue-500 text-blue-500 hover:bg-blue-100"
           >
@@ -421,7 +420,7 @@ export default function PDFProcessor() {
             variant="outline"
             size="icon"
             onClick={() => navigateCard("next")}
-            disabled={currentCard === cards.length - 1 || currentHashtag === hashtag.length - 1}
+            disabled={currentCard === cards.length - 1}
             aria-label="Next card"
             className="border-blue-500 text-blue-500 hover:bg-blue-100"
           >
