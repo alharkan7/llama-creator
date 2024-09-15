@@ -58,6 +58,7 @@ export default function PDFProcessor() {
   const [cards, setCards] = useState<string[]>([]);
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [currentCard, setCurrentCard] = useState(0);
+  const [currentHashtag, setCurrentHashtag] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const [cardStyle, setCardStyle] = useState(
     "bg-gradient-to-r from-blue-100 to-white"
@@ -245,7 +246,7 @@ export default function PDFProcessor() {
               >
                 <div className="absolute inset-0 flex items-center justify-center p-6">
                 <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
-                    #hashtag
+                    #{hashtag[currentHashtag]}
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center p-6">
                   {editMode ? (
