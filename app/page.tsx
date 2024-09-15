@@ -56,6 +56,7 @@ export default function PDFProcessor() {
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [cards, setCards] = useState<string[]>([]);
+  const [hashtag, setHashtag] = useState<string[]>([]);
   const [currentCard, setCurrentCard] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const [cardStyle, setCardStyle] = useState(
@@ -113,6 +114,15 @@ export default function PDFProcessor() {
         "The potential implications of this approach are far-reaching. By facilitating the rapid extraction of relational datasets, scientists can accelerate the advancement of scientific knowledge. This could have a profound impact on various industries, from energy to aerospace, and contribute to a more sustainable future. As the boundaries between human and artificial intelligence continue to blur, the possibilities for innovation and discovery are limitless.",
         "As we stand at the forefront of this exciting new chapter in scientific research, we invite you to share your thoughts on the future of sustainable materials science. How do you think large language models will continue to shape our understanding of the world, and what role will AI play in unlocking the secrets of tomorrow?",
       ]);
+      setHashtag([
+        "intro",
+        "question",
+        "researcher",
+        "method",
+        "findings",
+        "implication",
+        "closing",
+      ])
       setIsLoading(false);
     }, 3000);
   };
@@ -127,6 +137,7 @@ export default function PDFProcessor() {
 
   const handleEdit = (index: number, newText: string) => {
     setCards((prev) => prev.map((card, i) => (i === index ? newText : card)));
+    setHashtag((prev) => prev.map((card, i) => (i === index ? newText : card)));
   };
 
   const navigateCard = (direction: "next" | "prev") => {
@@ -195,6 +206,7 @@ export default function PDFProcessor() {
             variant="link"
             onClick={() => {
               setCards([]);
+              setHashtag([]);
               setPdfLink("");
               setFile(null);
             }}
