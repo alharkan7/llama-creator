@@ -157,7 +157,7 @@ export default function PDFProcessor() {
     // In a real application, you would open the actual source document here
     // window.open(pdfLink, "_blank");
     window.open(
-      "https://inria.hal.science/hal-01702159/file/396007_1_En_47_Chapter.pdf",
+      defaultUrl,
       "_blank"
     );
   };
