@@ -231,6 +231,9 @@ export default function PDFProcessor() {
                   exitActive: "card-exit-active",
                 }}
               >
+                <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
+                    #hashtag
+                </div>
                 <div className="absolute inset-0 flex items-center justify-center p-6">
                   {editMode ? (
                     <Textarea
