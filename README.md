@@ -22,30 +22,33 @@ A simple web application designed to transform scientific papers into social med
 
 To run this project locally, follow these steps:
 
-1. Clone the repository:
+**1. Clone the repository:**
 
 ```bash
    git clone https://github.com/alharkan7/llama-creator.git
 ```
 
-2.  Navigate to the project directory:
+**2.  Navigate to the project directory:**
     
 ```bash   
 cd llama-creator
 ```  
-3.  Install the dependencies:
+
+**3.  Install the dependencies:**
     
 ```bash    
 npm install
 ```
 
-4.  Start the development server:
+**4.  Start the development server:**
     
 ```bash    
 npm start
 ```
 
-5.  Open your browser and visit `http://localhost:3000` to see the app in action.
+**5.  Open your browser** 
+
+Visit visit `http://localhost:3000` to see the app in action.
     
 
 ## Deployment
