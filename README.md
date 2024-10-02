@@ -49,11 +49,15 @@ npm start
 **5.  Open your browser** 
 
 Visit visit `http://localhost:3000` to see the app in action.
-    
+
+## Backend API
+ 
+The application uses **FastAPI** to receive PDF files or links, which are then processed to transform them into explainer flashcards using **Meta Llama**. You can find the backend API repository here [https://github.com/alharkan7/llama-creator-api](https://github.com/alharkan7/llama-creator-api).
+
 
 ## Deployment
 
-This app is deployed on Vercel. You can access it [here](https://llama-creator.vercel.app/).
+This app is deployed on Vercel. You can access it here [https://llama-creator.vercel.app](https://llama-creator.vercel.app/).
 
 ## Contributing
 
