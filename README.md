@@ -1,42 +1,71 @@
-## Overview
 
-This is an interactive mockup to demonstrate how Llama LLM can transform PDF science papers into chunks of cards for social media content.
+# Llama Creator
 
-The backend setup for this app, a proof of concept, can be found here on [Colab Notebook](https://colab.research.google.com/drive/17yHdNdqOTnBqNFypgBGaDLMNN4KVWdSh?usp=sharing).
+A simple web application designed to transform scientific papers into social media-friendly explainer cards. Users can upload PDF files or provide links to PDF documents, and the app will generate cards containing essential parts of the research, including an overview, background, research question, researchers and institution, methods, findings, results, and impact.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Features
+
+- Upload PDF files or enter links to scientific papers for processing.
+- Generate social media-ready explainer cards from research papers.
+- Extracts and organizes critical information into easy-to-read formats.
+- User-friendly interface for seamless interaction.
+
+## Technologies Used
+
+- **React**: For building the user interface.
+- **JavaScript**: For application logic.
+- **PDF.js**: For parsing PDF documents and extracting content.
+- **CSS**: For styling the application.
+- **Vercel**: For deployment.
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/alharkan7/llama-creator.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  Navigate to the project directory:
+    
+```bash   
+cd llama-creator
+```  
+3.  Install the dependencies:
+    
+```bash    
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4.  Start the development server:
+    
+```bash    
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+5.  Open your browser and visit `http://localhost:3000` to see the app in action.
+    
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This app is deployed on Vercel. You can access it [here](https://llama-creator.vercel.app/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Contributions are welcome! If you have suggestions for improvements or features, please feel free to open an issue or submit a pull request.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgements
+
+-   [React](https://reactjs.org/) for the powerful framework.
+-   PDF.js for PDF parsing capabilities.
+-   [Vercel](https://vercel.com/) for easy deployment.
+
+----------
+
+## Happy Creating!
