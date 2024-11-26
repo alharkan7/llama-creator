@@ -39,11 +39,11 @@ importers:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
       react-share:
-        specifier: ^5.1.0
-        version: 5.1.0(react@18.2.0)
+        specifier: ^5.1.1
+        version: 5.1.1(react@18.2.0)
       react-swipeable:
-        specifier: ^7.0.1
-        version: 7.0.1(react@18.2.0)
+        specifier: ^7.0.2
+        version: 7.0.2(react@18.2.0)
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -1726,8 +1726,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-share@5.1.0:
-    resolution: {integrity: sha512-OvyfMtj/0UzH1wi90OdHhZVJ6WUC/+IeWvBwppeZozwIGyAjQgyR0QXlHOrxVHVECqnGvcpBaFTXVrqouTieaw==}
+  react-share@5.1.1:
+    resolution: {integrity: sha512-9rX6X4FiLwKi/eygTx6TWEKv0EuL15AdP6vnFMw5sA4UwTja0mgV4N3gAbkE9+5n3ry7BsBBeOnhaXbJ+jn9kQ==}
     peerDependencies:
       react: ^17 || ^18
 
@@ -1741,10 +1741,10 @@ packages:
       '@types/react':
         optional: true
 
-  react-swipeable@7.0.1:
-    resolution: {integrity: sha512-RKB17JdQzvECfnVj9yDZsiYn3vH0eyva/ZbrCZXZR0qp66PBRhtg4F9yJcJTWYT5Adadi+x4NoG53BxKHwIYLQ==}
+  react-swipeable@7.0.2:
+    resolution: {integrity: sha512-v1Qx1l+aC2fdxKa9aKJiaU/ZxmJ5o98RMoFwUqAAzVWUcxgfHFXDDruCKXhw6zIYXm6V64JiHgP9f6mlME5l8w==}
     peerDependencies:
-      react: ^16.8.3 || ^17 || ^18
+      react: ^16.8.3 || ^17 || ^18 || ^19.0.0 || ^19.0.0-rc
 
   react-transition-group@4.4.5:
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
@@ -3846,7 +3846,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.79
 
-  react-share@5.1.0(react@18.2.0):
+  react-share@5.1.1(react@18.2.0):
     dependencies:
       classnames: 2.5.1
       jsonp: 0.2.1
@@ -3863,7 +3863,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.79
 
-  react-swipeable@7.0.1(react@18.2.0):
+  react-swipeable@7.0.2(react@18.2.0):
     dependencies:
       react: 18.2.0
 
