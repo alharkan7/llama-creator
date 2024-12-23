@@ -88,11 +88,14 @@ export default function PDFProcessor() {
     }
   };
 
-  const handleProcess = () => {
-//    if (!file && !pdfLink) {
-//      setErrorMessage("Please provide a PDF link or file");
-//      return;
-//    }
+  const [data, setData] = useState<{ [key: string]: any }>({}); // Define the type for data
+
+
+  const handleProcess = async () => {
+    if (!pdfLink && !file) {
+      setErrorMessage("Please provide a PDF link or file");
+      return;
+    }
     if (pdfLink && file) {
       setErrorMessage("Please provide a PDF link or file. Not both.");
       return;
@@ -103,28 +106,37 @@ export default function PDFProcessor() {
     }
     setErrorMessage("");
     setIsLoading(true);
-    // Simulate processing
-    setTimeout(() => {
-      setCards([
-        "Imagine being able to unlock complex information from scientific texts with unprecedented ease. A recent breakthrough in large language models is making this vision a reality. By leveraging the power of artificial intelligence, researchers are now able to extract accurate information from unstructured texts. Meet the innovative metal-organic frameworks that are poised to revolutionize gas separations and shape a more sustainable future.",
-        "However, a pressing challenge remains: how do we efficiently extract structured knowledge from millions of scientific papers, especially in fields like materials science? Can we harness the potential of language models to accurately extract valuable insights from scientific articles, and how do we apply these findings to create smarter, more sustainable materials?",
-        "A team of researchers from the Lawrence Berkeley National Laboratory and the University of California, Berkeley, supported by the Toyota Research Institute and the U.S. Department of Energy, embarked on a mission to address this question. Their groundbreaking study would go on to push the boundaries of what's possible in scientific knowledge extraction.",
-        "The researchers employed a novel approach, fine-tuning pre-trained large language models to extract valuable records of complex scientific knowledge. By combining advanced machine learning techniques with vast datasets of scientific articles, they developed a cutting-edge materials information extraction system capable of analyzing vast amounts of data.",
-        "The results were nothing short of remarkable. The model accurately extracted structured knowledge from scientific texts, including crucial information on materials, their properties, and applications. This breakthrough, known as LLM-NERRE, paved the way for the rapid conversion of historical scientific text into structured forms, unlocking new possibilities for scientific discovery.",
-        "The potential implications of this approach are far-reaching. By facilitating the rapid extraction of relational datasets, scientists can accelerate the advancement of scientific knowledge. This could have a profound impact on various industries, from energy to aerospace, and contribute to a more sustainable future. As the boundaries between human and artificial intelligence continue to blur, the possibilities for innovation and discovery are limitless.",
-        "As we stand at the forefront of this exciting new chapter in scientific research, we invite you to share your thoughts on the future of sustainable materials science. How do you think large language models will continue to shape our understanding of the world, and what role will AI play in unlocking the secrets of tomorrow?",
-      ]);
-      setHashtag([
-        "intro",
-        "question",
-        "researcher",
-        "method",
-        "findings",
-        "implication",
-        "closing",
-      ])
+
+    const formData = new FormData();
+    if (pdfLink) {
+      formData.append("pdf_url", pdfLink);
+    } else if (file) {
+      formData.append("pdf_file", file);
+    }
+
+    try {
+      const response = await fetch(
+        "https://llama-creator-api.onrender.com/upload-pdf/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json(); // Try to get the error response
+        setErrorMessage(Object.values(errorData).join(", "));
+        return; // Exit early if there's an error
+      }
+
+      const fetchedData = await response.json(); // Fetch data
+      setData(fetchedData); // Store data in state
+      setCards(Object.values(fetchedData)); // Assuming the response is an object with string values
+    } catch (error) {
+      setErrorMessage("Error processing the PDF"); // Fallback error message for network issues
+    } finally {
       setIsLoading(false);
-    }, 3000);
+    }
   };
 
   const handlers = useSwipeable({
@@ -165,13 +177,18 @@ export default function PDFProcessor() {
   const defaultUrl = "https://www.nature.com/articles/s41467-024-45563-x.pdf";
 
   const openSourceDocument = () => {
-    // In a real application, you would open the actual source document here
-    // window.open(pdfLink, "_blank");
-    window.open(
-      defaultUrl,
-      "_blank"
-    );
-  };
+    // Open the user-submitted PDF link or the uploaded file
+    if (pdfLink) {
+        window.open(pdfLink, "_blank");
+    } else if (file) {
+        // Create a URL for the uploaded file and open it
+        const fileUrl = URL.createObjectURL(file);
+        window.open(fileUrl, "_blank");
+    } else {
+        // Handle case where neither link nor file is provided
+        setErrorMessage("No PDF link or file to open");
+    }
+};
 
   // Reset hasSwipedUp when cards change
   useEffect(() => {
@@ -232,6 +249,7 @@ export default function PDFProcessor() {
                 : {}
             }
           >
+
             <TransitionGroup>
               <CSSTransition
                 key={currentCard}
@@ -244,23 +262,24 @@ export default function PDFProcessor() {
                 }}
               >
                 <div className="absolute inset-0 flex items-center justify-center p-6">
-                <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
-                    #{hashtag[currentCard]}
+                  {/* Display the key of the current card */}
+                  <div className="absolute top-4 left-4 bg-blue-200 text-blue-600 text-xs font-semibold rounded-full px-2 py-1">
+                    #{Object.keys(data)[currentCard]} {/* Assuming 'data' is your JSON response */}
+                  </div>
+                  <div className="text-xl sm:text-3xl font-bold overflow-auto leading-relaxed w-full h-[95%] mt-10"> {/* Adjust height as needed */}
+                    {editMode ? (
+                      <Textarea
+                        value={cards[currentCard]}
+                        onChange={(e) => handleEdit(currentCard, e.target.value)}
+                        className="text-xl sm:text-3xl font-bold w-full h-full resize-none bg-transparent leading-relaxed"
+                      />
+                    ) : (
+                      <div className="overflow-auto h-full">
+                        {cards[currentCard]}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center p-6">
-                  {editMode ? (
-                    <Textarea
-                      value={cards[currentCard]}
-                      onChange={(e) => handleEdit(currentCard, e.target.value)}
-                      className="text-xl sm:text-3xl font-bold w-full h-full resize-none bg-transparent leading-relaxed"
-                    />
-                  ) : (
-                    <div className="text-xl sm:text-3xl font-bold overflow-auto leading-relaxed">
-                      {cards[currentCard]}
-                    </div>
-                  )}
-                </div>
-              </div>
               </CSSTransition>
             </TransitionGroup>
 
@@ -294,15 +313,18 @@ export default function PDFProcessor() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
-<FacebookShareButton
-  url={window.location.href}
-  hashtag={`#${cards[currentCard].split(' ').slice(0, 3).join('')}`}
->
-  <div className="flex items-center">
-    <Facebook className="w-4 h-4 mr-2" />
-    Facebook
-  </div>
-</FacebookShareButton>
+                  <FacebookShareButton
+                    url={window.location.href}
+                    hashtag={`#${cards[currentCard]
+                      .split(" ")
+                      .slice(0, 3)
+                      .join("")}`}
+                  >
+                    <div className="flex items-center">
+                      <Facebook className="w-4 h-4 mr-2" />
+                      Facebook
+                    </div>
+                  </FacebookShareButton>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <div className="flex items-center">
@@ -362,7 +384,7 @@ export default function PDFProcessor() {
                     key={index}
                     onClick={() => handlePictureChange(picture)}
                   >
-                    <img
+                    <img 
                       src={picture}
                       alt={`Background ${index + 1}`}
                       className="w-full h-20 object-cover"
@@ -441,13 +463,13 @@ export default function PDFProcessor() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-white p-4">
       <Card className="w-full max-w-md p-6 space-y-4 shadow-lg border border-blue-200">
         <div className="flex flex-col items-center mb-4">
-          <img
+          <img 
             src="/images/llama-logo.png?text=Logo"
             alt="Llama Science Creator Logo"
             className="w-24 h-24 md:w-32 md:h-32 object-contain mb-2"
           />
           <h1 className="text-2xl font-bold text-center text-blue-600">
-            Llama Science Creator
+            Llama Science Creator (Dev)
           </h1>
           <h6 className="text-s text-center text-blue-600">
             Turn Science Paper into Media Content
@@ -456,7 +478,7 @@ export default function PDFProcessor() {
         <Input
           type="text"
           placeholder="Paste a .pdf link here"
-          value={pdfLink || defaultUrl}
+          value={pdfLink}
           onChange={handleLinkChange}
           className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
         />
@@ -502,16 +524,17 @@ export default function PDFProcessor() {
         )}
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
         <p className="text-xs text-center text-red-400">
-          This is a UI mockup to demonstrate the concept.<br />
-          To try the working app, try our <a href="https://llama-creator-git-dev-alharkan7s-projects.vercel.app/" className="text-blue-500 underline">Prototype</a>.
-        </p>
-<Button
-  onClick={handleProcess}
-  className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-   // disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
->
-  Transform PDF
-</Button>
+            This web API is hosted on Render free tier.<br />
+            Expect slow performance. If error, refresh the page.<br />
+            The PDF input is ideally not longer than 12 pages.
+          </p>
+        <Button
+          onClick={handleProcess}
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+          disabled={Boolean((!pdfLink && !file) || (pdfLink && file))}
+        >
+          Transform PDF
+        </Button>
       </Card>
     </div>
   );
